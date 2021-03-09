@@ -8,9 +8,9 @@ export interface Product {
 }
 
 export interface CartItem {
-  id: number;
+  id: string;
   product: Product;
   amount: number;
 }
 
-export type CartItems = CartItems[];
+export type CartItems = CartItem[];
