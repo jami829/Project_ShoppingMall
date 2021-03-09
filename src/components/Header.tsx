@@ -10,6 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { ShoppingCart } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
+import { useReactiveVar } from '@apollo/client';
+import { cartItemVar } from '../cache';
 
 
 
@@ -33,7 +35,9 @@ interface Props {
 }
 
 function Header({ children }: Props) {
-
+  // 장바구니 수 변경한 Reactive Variables, 변경 될 때마다 이벤트을 받아 리렌더링을 해야함
+  // 변경이 될 때마다 리렌더링이 되어 아래 cartItems에는 항상 최신 값이 받아오게 됨
+  const cartItems = useReactiveVar(cartItemVar)
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -48,7 +52,7 @@ function Header({ children }: Props) {
           {children}
           {/* <Button color="inherit">Login</Button> */}
           <IconButton>
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={cartItems.length} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>
