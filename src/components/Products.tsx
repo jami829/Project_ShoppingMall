@@ -1,5 +1,6 @@
 import { Container, createStyles, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import React from 'react';
+import { cartItemVar } from '../cache';
 
 import img from '../img/1.jpeg';
 
@@ -23,16 +24,21 @@ function Products() {
   return (
     <Container className={classes.root}>
       <Grid container justify="center" spacing={2}>
-        {products.map(({ name, price, imgUrl }) => (
+        {products.map((item) => (
           <Grid item xs={6} md={4}>
-            <Paper>
+            <Paper onClick={() => {
+              // Reactive Variables를 인자 없이 그냥 호출하게 되면 현재 Reactive Variables 이 가지고 있는 상태를 반환하게 됨
+              const allCartItems = cartItemVar();
+              //전달한 인자를 Reactive Variables의 새로운 값으로 인식해서 대체하게 된다.
+              cartItemVar([...allCartItems])
+            }}>
               <img
                 style={{ width: "100%" }}
-                src={imgUrl}
+                src={item.imgUrl}
                 alt="product thumbnail"
               />
-              {name}
-              {price}
+              {item.name}
+              {item.price}
             </Paper>
           </Grid>
         ))}
