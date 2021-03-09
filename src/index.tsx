@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
+
+// Apollo도 context API를 의존, 따라서 provider를 생성 후 APP 트리로 내려준 후 
+// 트리 내에서 어디서도 아폴로 클라이언트 접근이 가능하도록 해줘야 한다.
+
+const client = new ApolloClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
