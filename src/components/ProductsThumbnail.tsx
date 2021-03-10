@@ -16,6 +16,7 @@ import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 
 const useStyles = makeStyles(() => ({
   card: {
+    cursor: 'pointer',
     borderRadius: '1rem',
     boxShadow: 'none',
     position: 'relative',

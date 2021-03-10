@@ -1,10 +1,11 @@
+import React from 'react';
 import { Container, createStyles, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import cuid from 'cuid';
-import React from 'react';
 import { cartItemVar } from '../cache';
+import ProductsThumbnail from '../components/ProductsThumbnail';
 
 import img from '../img/1.jpeg';
-import ProductsThumbnail from './ProductsThumbnail';
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,9 +17,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const products = [...Array(10)].map(() => ({
+  id: 'haha',
   name: "인테리어",
   price: "1000",
-  imgUrl: img
+  imgUrl: img,
+
 }))
 
 function Products() {
@@ -34,7 +37,7 @@ function Products() {
               //전달한 인자를 Reactive Variables의 새로운 값으로 인식해서 대체하게 된다.
               cartItemVar([...allCartItems, {
                 id: cuid(),
-                product: { ...item, id: cuid() },
+                product: item,
                 amount: 1
               }]);
             }} />;

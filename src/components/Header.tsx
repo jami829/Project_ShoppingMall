@@ -12,6 +12,7 @@ import { ShoppingCart } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
 import { useReactiveVar } from '@apollo/client';
 import { cartItemVar } from '../cache';
+import { Link } from 'react-router-dom';
 
 
 
@@ -51,11 +52,13 @@ function Header({ children }: Props) {
           </Typography>
           {children}
           {/* <Button color="inherit">Login</Button> */}
-          <IconButton>
-            <Badge badgeContent={cartItems.length} color="secondary">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
+          <Link to='/cart'>
+            <IconButton>
+              <Badge badgeContent={cartItems.length} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
 
